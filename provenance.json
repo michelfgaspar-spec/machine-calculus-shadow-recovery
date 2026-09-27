@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "repository_url": "https://github.com/michelfgaspar-spec/machine-calculus-shadow-recovery",
+  "manuscript_author": "Michel Gaspar",
+  "edition": "structural-2026-09-26",
+  "origin_repository": "https://github.com/michelfgaspar-spec/machine-calculus-shadows",
+  "origin_commit": "69c0663b2b0a7e9d8d0fb10a4730a592cf953ef6",
+  "canonical_source_commit": "59d1dc73270311c74cc03d97578e309566f39689",
+  "inherited_key_fingerprint": "SHA256:iGk/EbrlPVyCCJgvx5RhK5EnlK4EU2sK+YrKt5lo+UI",
+  "original_build_receipt_sha256": "ee585c26c68a92407ca47637f7deb263f5c09068279d919e0b5338815e1ae732",
+  "original_build": {
+    "source_compilation_jobs": 121,
+    "full_pdf_before_assembly": false,
+    "final_page_count": 242
+  },
+  "derived_code_sources": {
+    "builder/core.py": "83e476fd0d00592a6019994bc441b55e3e88f7d3889f8af786f905f40a9dfaf3",
+    "builder/shadows.py": "0aaafe72744c8b7646bf6b581e43f0e1810724edc53c76875db0147eb6a2e2ef",
+    "builder/shadow_pdf.py": "15f4f687285157544a163f4e5819fbeecf9d13381e9a087984d9cf012f27dd23",
+    "builder/watermark.py": "1998158189d0be51ce2681c4183792dff9164b5915507704dadeaf0e3cdff18f",
+    "scripts/check_reconstruction.py": "7668576747c1e8909bfc8c9bd9be9ef4782f22b0bae456f38fb7b4fb976969ab"
+  },
+  "source_recovery": {
+    "representation": "121 nonempty contiguous parts of a JSON/base64 stream, embedded only as source-part.bin attachments inside enriched copies of the original shadow PDFs",
+    "source_file_count": 29,
+    "source_bytes": 605180,
+    "verification": "Every recovered clean TeX file and the exact path set are checked against inherited signed canonical_outputs",
+    "packaging_metadata_signed": false,
+    "original_attachments_preserved": true
+  },
+  "scope": "Fresh recovery distribution. Original source signatures are preserved inside enriched shadow copies; they do not sign the source-part map, recovery implementation or generated PDF bytes. No standalone manuscript TeX, full-book PDF, Word document, source archive or original Git history is included. Source recovery decodes deliberately embedded bytes; it does not reverse-engineer TeX from PDF pages."
+}
