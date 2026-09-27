@@ -225,6 +225,20 @@ class RepositoryInventoryTests(unittest.TestCase):
         with self.assertRaisesRegex(InventoryError, 'Noncommit ref'):
             audit(self.root, history=True)
 
+    def test_manuscript_in_commit_message_rejected(self):
+        self.init()
+        self.git('add', '-A')
+        self.git('commit', '-m', '\\' + 'document' + 'class{book}')
+        with self.assertRaisesRegex(InventoryError, 'TeX manuscript marker'):
+            audit(self.root, history=True)
+
+    def test_manuscript_in_annotated_tag_message_rejected(self):
+        self.init()
+        self.commit()
+        self.git('tag', '-a', 'source-leak', '-m', '\\' + 'document' + 'class{book}')
+        with self.assertRaisesRegex(InventoryError, 'TeX manuscript marker'):
+            audit(self.root, history=True)
+
     def test_shallow_and_promisor_repositories_rejected(self):
         self.init()
         commit = self.commit()

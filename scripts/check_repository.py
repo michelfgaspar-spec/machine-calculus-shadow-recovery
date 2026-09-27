@@ -192,6 +192,11 @@ def inspect_history(root):
     for ref in refs:
         if ref.startswith('refs/replace/'):
             raise InventoryError('Replacement refs cannot provide a complete audit')
+        target = _git(root, 'rev-parse', '--verify', ref).decode().strip()
+        while _git(root, 'cat-file', '-t', target).strip() == b'tag':
+            raw_tag = _git(root, 'cat-file', 'tag', target)
+            _inspect_text('annotated tag ' + target, raw_tag)
+            target = raw_tag.splitlines()[0].decode().removeprefix('object ')
         oid = _git(root, 'rev-parse', '--verify', ref + '^{}').decode().strip()
         if _git(root, 'cat-file', '-t', oid).strip() != b'commit':
             raise InventoryError('Noncommit ref may carry uninspected content: ' + ref)
@@ -220,6 +225,7 @@ def inspect_history(root):
         check(staged, 'index', index=True)
     for commit in sorted(commits):
         try:
+            _inspect_text('commit metadata ' + commit, _git(root, 'cat-file', 'commit', commit))
             check(_git(root, 'ls-tree', '-r', '-z', '--full-tree', commit), commit)
         except InventoryError as exc:
             raise InventoryError('Historical commit ' + commit + ': ' + str(exc)) from exc
